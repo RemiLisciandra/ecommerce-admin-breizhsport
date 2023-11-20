@@ -30,6 +30,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     onChange(result.info.secure_url);
   };
 
+  const uploadPreset = process.env.NEXT_PUBLIC_UPLOAD_PRESET_NAME;
+
   if (!isMounted) {
     return null;
   }
@@ -53,7 +55,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           </div>
         ))}
       </div>
-      <CldUploadWidget onUpload={onUpload} uploadPreset="t4drjppf">
+      <CldUploadWidget onUpload={onUpload} uploadPreset={uploadPreset}>
         {({ open }) => {
           const onClick = () => {
             open();
