@@ -1,5 +1,6 @@
 # Étape 1: Installer les dépendances et générer le client Prisma
 FROM node:alpine as deps
+COPY .env ./
 WORKDIR /app
 COPY package.json .
 RUN npm install
@@ -9,7 +10,6 @@ RUN npx prisma generate
 # Étape 2: Construire votre application Next.js
 FROM node:alpine as builder
 WORKDIR /app
-COPY .env ./
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
