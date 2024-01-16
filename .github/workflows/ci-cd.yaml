@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  sonarcloud_scan:
+  build_and_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,9 +18,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run Linting
+        run: npm run lint
+
+      - name: Run Tests
+        run: npm run test
+
+      - name: Run Build
+        run: npm run build
+
       - name: Run SonarCloud Scan
         env:
           ADMIN_SONAR_TOKEN: ${{ secrets.ADMIN_SONAR_TOKEN }}
         run: |
-          npm run build
           sonar-scanner -Dsonar.projectKey=RemiLisciandra_ecommerce-admin-breizhsport -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$ADMIN_SONAR_TOKEN
