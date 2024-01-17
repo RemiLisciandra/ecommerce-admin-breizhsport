@@ -1,4 +1,4 @@
-name: CI Pipeline with SonarCloud
+name: CI Pipeline
 
 on:
   push:
@@ -26,6 +26,15 @@ jobs:
 
       - name: Run Build
         run: npm run build
+
+      - name: Install JFrog CLI
+        run: curl -fL https://getcli.jfrog.io | sh
+
+      - name: Configure JFrog CLI
+        run: ./jfrog rt c add --url ${{ secrets.ARTIFACTORY_URL }} --user ${{ secrets.ARTIFACTORY_USERNAME }} --password ${{ secrets.ARTIFACTORY_PASSWORD }}
+
+      - name: Publish Artifacts to JFrog Artifactory
+        run: ./jfrog rt u ".next/*" "repo-npm/"
 
       - name: Run SonarCloud Scan
         env:
