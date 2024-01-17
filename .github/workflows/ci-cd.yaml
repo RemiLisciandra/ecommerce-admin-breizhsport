@@ -27,6 +27,12 @@ jobs:
       - name: Run Build
         run: npm run build
 
+      - name: Run SonarCloud Scan
+        env:
+          ADMIN_SONAR_TOKEN: ${{ secrets.ADMIN_SONAR_TOKEN }}
+        run: |
+          sonar-scanner -Dsonar.projectKey=RemiLisciandra_ecommerce-admin-breizhsport -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$ADMIN_SONAR_TOKEN
+
       - name: Install JFrog CLI
         run: curl -fL https://getcli.jfrog.io | sh
 
@@ -34,15 +40,9 @@ jobs:
         run: ./jfrog rt c add --url ${{ secrets.JF_URL }} --access-token ${{ secrets.JF_ACCESS_TOKEN }}
 
       - name: Publish Artifacts to JFrog Artifactory
-        run: ./jfrog rt u ".next/*" "repo-npm"
+        run: ./jfrog rt u ".next/*" "repo-npm/"
 
       - name: Publish Package to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Run SonarCloud Scan
-        env:
-          ADMIN_SONAR_TOKEN: ${{ secrets.ADMIN_SONAR_TOKEN }}
-        run: |
-          sonar-scanner -Dsonar.projectKey=RemiLisciandra_ecommerce-admin-breizhsport -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$ADMIN_SONAR_TOKEN
