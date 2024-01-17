@@ -27,6 +27,12 @@ jobs:
       - name: Run Build
         run: npm run build
 
+      - name: Install SonarScanner
+        run: |
+          curl -Lo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-{version}.zip
+          unzip sonar-scanner.zip
+          export PATH=$PATH:$(pwd)/sonar-scanner-{version}/bin
+
       - name: Run SonarCloud Scan
         env:
           ADMIN_SONAR_TOKEN: ${{ secrets.ADMIN_SONAR_TOKEN }}
