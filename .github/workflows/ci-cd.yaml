@@ -35,9 +35,9 @@ jobs:
 
       - name: Run SonarCloud Scan
         env:
-          ADMIN_SONAR_TOKEN: ${{ secrets.ADMIN_SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner -Dsonar.projectKey=RemiLisciandra_ecommerce-admin-breizhsport -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$ADMIN_SONAR_TOKEN
+          sonar-scanner -Dsonar.projectKey=RemiLisciandra_ecommerce-admin-breizhsport -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 
       - name: Install JFrog CLI
         run: curl -fL https://getcli.jfrog.io | sh
