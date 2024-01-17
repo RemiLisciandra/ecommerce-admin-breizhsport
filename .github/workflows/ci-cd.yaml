@@ -34,7 +34,7 @@ jobs:
         run: ./jfrog rt c add --url ${{ secrets.JF_URL }} --access-token ${{ secrets.JF_ACCESS_TOKEN }}
 
       - name: Publish Artifacts to JFrog Artifactory
-        run: ./jfrog rt u ".next/*" "repo-npm/"
+        run: ./jfrog rt u ".next/*" "repo-npm"
 
       - name: Publish Package to npm
         run: npm publish
