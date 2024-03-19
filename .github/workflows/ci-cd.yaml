@@ -32,7 +32,7 @@ jobs:
         with:
           start: npm start
           wait-on: "http://localhost:3001"
-          wait-on-timeout: 300
+          wait-on-timeout: 600
         env:
           CI: true
 
