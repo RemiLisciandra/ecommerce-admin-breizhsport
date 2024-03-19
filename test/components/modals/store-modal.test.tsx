@@ -8,7 +8,6 @@ jest.mock("@/hooks/use-store-modal");
 
 describe("StoreModal Component", () => {
   it("renders the form and buttons", () => {
-    // Simuler useStoreModal pour contrôler l'état du modal
     jest.spyOn(StoreModalHook, "useStoreModal").mockImplementation(() => ({
       isOpen: true,
       onClose: jest.fn(),

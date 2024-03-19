@@ -21,8 +21,17 @@ jobs:
       - name: Run Linting
         run: npm run lint
 
-      - name: Run Tests
+      - name: Run Unit Tests
         run: npm run test
+
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 300
+        env:
+          CI: true
 
       - name: Run Build
         run: npm run build
