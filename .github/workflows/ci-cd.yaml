@@ -50,11 +50,3 @@ jobs:
 
       - name: Configure JFrog CLI
         run: ./jfrog rt c add --url ${{ secrets.JF_URL }} --access-token ${{ secrets.JF_ACCESS_TOKEN }}
-
-      - name: Publish Artifacts to JFrog Artifactory
-        run: ./jfrog rt u ".next/*" "repo-npm/"
-
-      - name: Publish Package to npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

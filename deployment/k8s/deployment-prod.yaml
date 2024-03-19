@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-admin-app-prod
+  namespace: production
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: ecommerce-admin-app
+  template:
+    metadata:
+      labels:
+        app: ecommerce-admin-app
+    spec:
+      containers:
+        - name: ecommerce-admin-app
+          image: image/app:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "500m"
+            limits:
+              memory: "512Mi"
+              cpu: "1000m"

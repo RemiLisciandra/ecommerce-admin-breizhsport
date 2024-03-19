@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-admin-app-staging
+  namespace: staging
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ecommerce-admin-app
+  template:
+    metadata:
+      labels:
+        app: ecommerce-admin-app
+    spec:
+      containers:
+        - name: ecommerce-admin-app
+          image: image/app:staging
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
