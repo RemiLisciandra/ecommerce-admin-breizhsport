@@ -3,6 +3,7 @@ describe("Navigation dans le site internet", () => {
     cy.visit("https://symfony.com");
   });
 
+  // Ceci est un commentaire
   it("doit contenir un texte spécifique", () => {
     cy.visit("https://symfony.com");
     cy.contains("About");
@@ -10,6 +11,6 @@ describe("Navigation dans le site internet", () => {
 
   it("doit contenir un texte spécifique", () => {
     cy.visit("https://symfony.com");
-    cy.contains("Documentationd");
+    cy.contains("Documentation");
   });
 });
