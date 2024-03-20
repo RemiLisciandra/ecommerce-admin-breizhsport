@@ -1,4 +1,4 @@
-describe("Navigation des catégories", () => {
+describe("Navigation dans le site internet", () => {
   beforeEach(() => {
     cy.visit("https://symfony.com");
   });
@@ -11,10 +11,5 @@ describe("Navigation des catégories", () => {
   it("doit contenir un texte spécifique", () => {
     cy.visit("https://symfony.com");
     cy.contains("Documentation");
-  });
-
-  it("doit contenir un texte spécifique", () => {
-    cy.visit("https://symfony.com");
-    cy.contains("Services");
   });
 });
