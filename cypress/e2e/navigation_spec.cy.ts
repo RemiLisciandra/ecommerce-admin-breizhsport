@@ -10,6 +10,6 @@ describe("Navigation dans le site internet", () => {
 
   it("doit contenir un texte spécifique", () => {
     cy.visit("https://symfony.com");
-    cy.contains("Documentation");
+    cy.contains("Documentationd");
   });
 });
